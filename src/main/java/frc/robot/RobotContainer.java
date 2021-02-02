@@ -11,6 +11,7 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutonomousDistance;
 import frc.robot.commands.AutonomousTime;
 import frc.robot.commands.TurnDegrees;
+import frc.robot.commands.TurnDegreesGyro;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.OnBoardIO;
 import frc.robot.subsystems.OnBoardIO.ChannelMode;
@@ -74,10 +75,10 @@ public class RobotContainer {
     JoystickButton leftTurn180Button = new JoystickButton(m_controller, 5);
     JoystickButton autonomousDistanceButton = new JoystickButton(m_controller, 11);
     JoystickButton autonomousTimeButton = new JoystickButton(m_controller, 12);
-    rightTurn90Button.whenPressed(new TurnDegrees(1, 90, m_drivetrain));
-    leftTurn90Button.whenPressed(new TurnDegrees(1, -90, m_drivetrain));
-    rightTurn180Button.whenPressed(new TurnDegrees(1, 180, m_drivetrain));
-    leftTurn180Button.whenPressed(new TurnDegrees(1, -180, m_drivetrain));
+    rightTurn90Button.whenPressed(new TurnDegreesGyro(1, 90, m_drivetrain));
+    leftTurn90Button.whenPressed(new TurnDegreesGyro(-1, 90, m_drivetrain));
+    rightTurn180Button.whenPressed(new TurnDegreesGyro(1, 180, m_drivetrain));
+    leftTurn180Button.whenPressed(new TurnDegreesGyro(-1, 180, m_drivetrain));
     autonomousDistanceButton.whenPressed(new AutonomousDistance(m_drivetrain));
     autonomousTimeButton.whenPressed(new AutonomousTime(m_drivetrain));
 
