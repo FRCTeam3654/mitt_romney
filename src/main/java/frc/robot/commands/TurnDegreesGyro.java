@@ -44,6 +44,6 @@ public class TurnDegreesGyro extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(m_drive.getGyroAngleX()) >= m_degrees;
+    return Math.abs(m_drive.getGyroAngleZ()) >= m_degrees;
   }
 }
