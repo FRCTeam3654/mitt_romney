@@ -15,6 +15,7 @@ import frc.robot.Constants;
 public class TurnDegreesPIDGyro extends PIDCommand {
   /** Creates a new TurnDegreesPIDGyro. */
   public TurnDegreesPIDGyro(double speed, double degrees, Drivetrain drive) {
+    
     super(
         // The controller that the command will use
         new PIDController(Constants.turnPIDGyroP, Constants.turnPIDGyroI, Constants.turnPIDGyroD),
@@ -23,7 +24,7 @@ public class TurnDegreesPIDGyro extends PIDCommand {
         // This should return the setpoint (can also be a constant)
         degrees,
         // This uses the output
-        output -> drive.arcadeDrive(0, output),
+        output -> drive.arcadeDrive(0, -output),
           // Use the output here
         drive);
 
@@ -35,6 +36,7 @@ public class TurnDegreesPIDGyro extends PIDCommand {
         .setTolerance(Constants.turnToleranceDeg, Constants.turnRateToleranceDegPerS);
   }
 
+  //michele wuz here
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
