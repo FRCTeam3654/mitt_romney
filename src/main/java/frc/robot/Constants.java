@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static double turnPIDGyroP = 0.009;
+    public static double turnPIDGyroP = 0.01195;
     public static double turnPIDGyroI = 0;
-    public static double turnPIDGyroD = 0.01;
+    public static double turnPIDGyroD = 0.02;
     public static double turnToleranceDeg = 3; 
     public static double turnRateToleranceDegPerS = 24;
 //for Ramsite
@@ -34,8 +34,8 @@ public final class Constants {
       }
     
       public static final class AutoConstants {
-        public static final double kMaxSpeedMetersPerSecond = 0.8;
-        public static final double kMaxAccelerationMetersPerSecondSquared = 0.8;
+        public static final double kMaxSpeedMetersPerSecond = 0.4;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 0.4;
     
         // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
         public static final double kRamseteB = 2;

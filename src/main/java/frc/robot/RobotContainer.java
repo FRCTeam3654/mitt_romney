@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutonomousDistance;
 import frc.robot.commands.AutonomousTime;
-import frc.robot.commands.TurnDegrees;
-import frc.robot.commands.TurnDegreesGyro;
 import frc.robot.commands.TurnDegreesPIDGyro;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.OnBoardIO;
@@ -106,14 +104,15 @@ public class RobotContainer {
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         List.of(
-            new Translation2d(0.34, 0.11),
+            new Translation2d(0.23, 0.21) /*,
             new Translation2d(0.46, 0.46),
             new Translation2d(0.11, 0.34),
             new Translation2d(-0.23, 0.23),
-            new Translation2d(-0.11, 0.57)
+            new Translation2d(-0.11, 0.57) */
               ),
-        new Pose2d(0.23, 0.69, new Rotation2d(0)),
+        new Pose2d(0.5, -0.5, new Rotation2d(Math.PI)),
         config);
+
 
     RamseteCommand ramseteCommand = new RamseteCommand(
         exampleTrajectory,
