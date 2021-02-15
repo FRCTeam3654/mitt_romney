@@ -21,6 +21,8 @@ import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
@@ -31,11 +33,15 @@ import edu.wpi.first.wpilibj.geometry.Translation2d;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -100,7 +106,7 @@ public class RobotContainer {
     // Note that all coordinates are in meters, and follow NWU conventions.
     // If you would like to specify coordinates in inches (which might be easier
     // to deal with for the Romi), you can use the Units.inchesToMeters() method
-    Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+    final Trajectory example2Trajectory = TrajectoryGenerator.generateTrajectory(
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         List.of(
@@ -110,12 +116,21 @@ public class RobotContainer {
             new Translation2d(-0.23, 0.23),
             new Translation2d(-0.11, 0.57) */
               ),
-        new Pose2d(0.5, -0.5, new Rotation2d(Math.PI)),
+        new Pose2d(0.5, -0.5, new Rotation2d( Math.PI)),
         config);
-
+        
+        String trajectoryJSON = "paths/AJKtrn.wpilib.json";
+        Trajectory example3Trajectory = new Trajectory();
+          try {
+            Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+            example3Trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+          } catch (IOException ex) {
+            DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
+          }
+          final Trajectory example4Trajectory = example3Trajectory;
 
     RamseteCommand ramseteCommand = new RamseteCommand(
-        exampleTrajectory,
+        example4Trajectory,
         m_drivetrain::getPose,
         new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
         new SimpleMotorFeedforward(DriveConstants.ksVolts, DriveConstants.kvVoltSecondsPerMeter, DriveConstants.kaVoltSecondsSquaredPerMeter),
@@ -126,11 +141,11 @@ public class RobotContainer {
         m_drivetrain::tankDriveVolts,
         m_drivetrain);
 
-    m_drivetrain.resetOdometry(exampleTrajectory.getInitialPose());
+    m_drivetrain.resetOdometry(example4Trajectory.getInitialPose());
 
     // Set up a sequence of commands
     // First, we want to reset the drivetrain odometry
-    return new InstantCommand(() -> m_drivetrain.resetOdometry(exampleTrajectory.getInitialPose()), m_drivetrain)
+    return new InstantCommand(() -> m_drivetrain.resetOdometry(example4Trajectory.getInitialPose()), m_drivetrain)
         // next, we run the actual ramsete command
         .andThen(ramseteCommand)
 

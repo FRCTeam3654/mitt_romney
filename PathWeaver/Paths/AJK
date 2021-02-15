@@ -1,0 +1,5 @@
+X,Y,Tangent X,Tangent Y,Fixed Theta,Reversed,Name
+1.0,-1.0,0.01,-0.3,true,false,
+1.457,-1.457,-0.1,0.3,true,false,YellowBrick
+1.228,-0.776,0.2569738818178541,-0.0238,true,false,BlueBlock
+1.686,-1.229,0.026481723749455455,-0.309,true,false,Red
