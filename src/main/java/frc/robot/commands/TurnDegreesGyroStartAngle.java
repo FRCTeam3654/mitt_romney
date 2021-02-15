@@ -45,8 +45,8 @@ public class TurnDegreesGyroStartAngle extends CommandBase {
     m_speed = Math.min(1, m_speed);
     m_speed = Math.max(-1, m_speed);
 
-    if (m_speed> 0 && m_speed < 0.2) m_speed = 0.2;
-    if (m_speed< 0 && m_speed > -0.2) m_speed = -0.2;
+    if (m_speed> 0 && m_speed < 0.01) m_speed = 0.01;
+    if (m_speed< 0 && m_speed > -0.01) m_speed = -0.01;
 
     m_drive.arcadeDrive(0, m_speed);
   }

@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static double turnPIDGyroP = 0.01195;
+    public static double turnPIDGyroP = 0.009;
     public static double turnPIDGyroI = 0;
     public static double turnPIDGyroD = 0.02;
     public static double turnToleranceDeg = 3; 
