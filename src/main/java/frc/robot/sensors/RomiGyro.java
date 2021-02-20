@@ -8,6 +8,7 @@ import edu.wpi.first.hal.SimDevice;
 import edu.wpi.first.hal.SimDevice.Direction;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.hal.SimDouble;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 
 public class RomiGyro implements Gyro {
   private SimDouble m_simRateX;
@@ -37,6 +38,12 @@ public class RomiGyro implements Gyro {
       m_simAngleZ = m_gyroSimDevice.createDouble("angle_z", Direction.kInput, 0.0);
     }
   }
+
+  //added this to correct rotation info for ramsete
+  public Rotation2d getRotation2d() {
+    double angle = this.getAngleZ() / 180 * Math.PI;
+       return new Rotation2d(angle);
+   } 
 
   /**
    * Get the rate of turn in degrees-per-second around the X-axis.

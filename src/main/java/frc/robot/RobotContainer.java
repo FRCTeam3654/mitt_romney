@@ -119,7 +119,7 @@ public class RobotContainer {
         new Pose2d(0.5, -0.5, new Rotation2d( Math.PI)),
         config);
         
-        String trajectoryJSON = "paths/AJKtrn.wpilib.json";
+        String trajectoryJSON = "paths/AJK.wpilib.json";
         Trajectory example3Trajectory = new Trajectory();
           try {
             Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
