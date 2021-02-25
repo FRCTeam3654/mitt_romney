@@ -111,7 +111,7 @@ public class RobotContainer {
         new Pose2d(0, 0, new Rotation2d(0)),
         List.of(
             new Translation2d(0.23, 0.21) /*,
-            new Translation2d(0.46, 0.46),
+            new Translation2d(0.46, 0.46), 
             new Translation2d(0.11, 0.34),
             new Translation2d(-0.23, 0.23),
             new Translation2d(-0.11, 0.57) */
@@ -119,7 +119,7 @@ public class RobotContainer {
         new Pose2d(0.5, -0.5, new Rotation2d( Math.PI)),
         config);
         
-        String trajectoryJSON = "paths/AJK.wpilib.json";
+        String trajectoryJSON = "paths/output/AJK.wpilib.json";
         Trajectory example3Trajectory = new Trajectory();
           try {
             Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
@@ -208,6 +208,6 @@ public class RobotContainer {
    */
   public Command getArcadeDriveCommand() {
     return new ArcadeDrive(
-        m_drivetrain, () -> -m_controller.getRawAxis(1), () -> m_controller.getRawAxis(2));
+        m_drivetrain, () -> -m_controller.getRawAxis(1), () -> m_controller.getRawAxis(0));
   }
 }
