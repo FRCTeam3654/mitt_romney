@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 public final class Constants {
     public static double turnPIDGyroP = 0.009;
     public static double turnPIDGyroI = 0;
-    public static double turnPIDGyroD = 0.02;
+    public static double turnPIDGyroD = 0.0075;
     public static double turnToleranceDeg = 3; 
     public static double turnRateToleranceDegPerS = 24;
 //for Ramsite

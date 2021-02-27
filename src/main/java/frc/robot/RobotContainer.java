@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.AutonomousDistance;
 import frc.robot.commands.AutonomousTime;
+import frc.robot.commands.TurnDegreesGyroStartAngle;
 import frc.robot.commands.TurnDegreesPIDGyro;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.OnBoardIO;
@@ -54,6 +55,7 @@ public class RobotContainer {
   private final Drivetrain m_drivetrain = new Drivetrain();
   private final OnBoardIO m_onboardIO = new OnBoardIO(ChannelMode.INPUT, ChannelMode.INPUT);
 
+  private double startingGyroAngle = m_drivetrain.getGyroAngleZ();
   // Assumes a gamepad plugged into channnel 0
   private final Joystick m_controller = new Joystick(0);
 
@@ -173,10 +175,10 @@ public class RobotContainer {
     JoystickButton leftTurn180Button = new JoystickButton(m_controller, 5);
     JoystickButton autonomousDistanceButton = new JoystickButton(m_controller, 11);
     JoystickButton autonomousTimeButton = new JoystickButton(m_controller, 12);
-    rightTurn90Button.whenPressed(new TurnDegreesPIDGyro(0.5, 90, m_drivetrain));
-    leftTurn90Button.whenPressed(new TurnDegreesPIDGyro(-0.5, -90, m_drivetrain));
-    rightTurn180Button.whenPressed(new TurnDegreesPIDGyro(0.5, 180, m_drivetrain));
-    leftTurn180Button.whenPressed(new TurnDegreesPIDGyro(-0.5, -180, m_drivetrain));
+    rightTurn90Button.whenPressed(new TurnDegreesGyroStartAngle(0.5, -160, startingGyroAngle, m_drivetrain));
+    leftTurn90Button.whenPressed(new TurnDegreesGyroStartAngle(-0.5, 90, startingGyroAngle, m_drivetrain));
+    rightTurn180Button.whenPressed(new TurnDegreesGyroStartAngle(0.5, 180, startingGyroAngle, m_drivetrain));
+    leftTurn180Button.whenPressed(new TurnDegreesGyroStartAngle(-0.5, 0, startingGyroAngle, m_drivetrain));
     autonomousDistanceButton.whenPressed(new AutonomousDistance(m_drivetrain));
     autonomousTimeButton.whenPressed(new AutonomousTime(m_drivetrain));
 
