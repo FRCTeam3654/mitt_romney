@@ -83,6 +83,14 @@ public class Drivetrain extends SubsystemBase {
   public int getRightEncoderCount() {
     return m_rightEncoder.get();
   }
+  
+  public double getLeftVelocityInch() {
+    return m_leftEncoder.getRate();
+  }
+
+  public double getRightVelocityInch() {
+    return m_rightEncoder.getRate();
+  }
 
   public double getLeftDistanceInch() {
     return m_leftEncoder.getDistance();
@@ -102,6 +110,14 @@ public class Drivetrain extends SubsystemBase {
 
   public double getRightDistanceMeter() {
     return getRightDistanceInch()*0.0254;
+  }
+
+  public double getLeftVelocityMeter() {
+    return getLeftVelocityInch()*0.0254;
+  }
+
+  public double getRightVelocityMeter() {
+    return getRightVelocityInch()*0.0254;
   }
 
   public double getAverageDistanceMeter() {

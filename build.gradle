@@ -8,6 +8,12 @@ targetCompatibility = JavaVersion.VERSION_11
 
 def ROBOT_MAIN_CLASS = "frc.robot.Main"
 
+repositories {
+    maven {
+        url "http://maven.came20.net/artifactory/devel"
+    }
+} 
+
 // Set this to true to enable desktop support.
 def includeDesktopSupport = true
 
@@ -28,6 +34,12 @@ dependencies {
     simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
     simulation wpi.deps.sim.driverstation(wpi.platforms.desktop, false)
 
+    //implementation "frckit.tools:pathview:0.0.30"
+    implementation "frckit.tools:pathview:0.0.28"
+    implementation "frckit.lib:util:0.0.24"
+    implementation 'gov.nist.math:jama:1.0.3'
+    implementation "frckit.lib:pvision:0.0.22"
+    
     // Websocket extensions require additional configuration.
     // simulation wpi.deps.sim.ws_server(wpi.platforms.desktop, false)
     simulation wpi.deps.sim.ws_client(wpi.platforms.desktop, false)
