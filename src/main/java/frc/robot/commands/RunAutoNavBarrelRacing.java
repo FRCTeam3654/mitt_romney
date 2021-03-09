@@ -44,12 +44,12 @@ public class RunAutoNavBarrelRacing extends SequentialCommandGroup {
     // two changes: ending x is at 42, not the starting 30,  ending velocity is 0, not their max speed 120 inches/s or 3 m/s
     mp = new NewRunMotionProfile(driveTrain, odometry, 0.0,
     List.of(new Pose2d(Units.inchesToMeters(30.0), Units.inchesToMeters(90.0), new Rotation2d()),
-        new CirclePath(new Translation2d(Units.inchesToMeters(150), Units.inchesToMeters(60)), Units.inchesToMeters(30), new Rotation2d(), Rotation2d.fromDegrees(-180), true),
-        new CirclePath(new Translation2d(Units.inchesToMeters(240), Units.inchesToMeters(120)), Units.inchesToMeters(30), new Rotation2d(), Rotation2d.fromDegrees(180), false),
-        new CirclePath(new Translation2d(Units.inchesToMeters(300), Units.inchesToMeters(60)), Units.inchesToMeters(30), Rotation2d.fromDegrees(-90), Rotation2d.fromDegrees(90),
-            false),
-        new Pose2d(Units.inchesToMeters(150.0), Units.inchesToMeters(90), Rotation2d.fromDegrees(180)), new Pose2d(Units.inchesToMeters(30.0), Units.inchesToMeters(90.0), Rotation2d.fromDegrees(180))),
-    0.0, false, false);
+        //new CirclePath(new Translation2d(Units.inchesToMeters(150), Units.inchesToMeters(60)), Units.inchesToMeters(30), new Rotation2d(), Rotation2d.fromDegrees(-180), true),
+        //new CirclePath(new Translation2d(Units.inchesToMeters(240), Units.inchesToMeters(120)), Units.inchesToMeters(30), new Rotation2d(), Rotation2d.fromDegrees(180), false),
+        ///new CirclePath(new Translation2d(Units.inchesToMeters(300), Units.inchesToMeters(60)), Units.inchesToMeters(30), Rotation2d.fromDegrees(-90), Rotation2d.fromDegrees(90),
+            //false),
+        new Pose2d(Units.inchesToMeters(57.5591), Units.inchesToMeters(90), Rotation2d.fromDegrees(0))),
+    0.0, false, false); 
     // Add your addCommands(new FooCommand(), new BarCommand());
     //addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(30), Units.inchesToMeters(90), new Rotation2d()))), mp,
        // new InstantCommand(() -> driveTrain.stop()));

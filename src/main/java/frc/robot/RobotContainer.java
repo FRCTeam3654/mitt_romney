@@ -14,6 +14,7 @@ import frc.robot.commands.TurnDegreesGyroStartAngle;
 import frc.robot.commands.TurnDegreesPIDGyro;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.OnBoardIO;
+import frc.robot.subsystems.RobotOdometry;
 import frc.robot.subsystems.OnBoardIO.ChannelMode;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -42,7 +43,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
-
+import frc.robot.commands.RunAutoNavBarrelRacing;
+import frc.robot.commands.RunAutoNavSlalom;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -52,15 +54,16 @@ import edu.wpi.first.wpilibj.Filesystem;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Drivetrain m_drivetrain = new Drivetrain();
-  private final OnBoardIO m_onboardIO = new OnBoardIO(ChannelMode.INPUT, ChannelMode.INPUT);
+  private Drivetrain m_drivetrain;
+  private RobotOdometry m_odometry;
+  private  OnBoardIO m_onboardIO;
 
-  private double startingGyroAngle = m_drivetrain.getGyroAngleZ();
+  private double startingGyroAngle;
   // Assumes a gamepad plugged into channnel 0
-  private final Joystick m_controller = new Joystick(0);
+  private Joystick m_controller;
 
   // Create SmartDashboard chooser for autonomous routines
-  private final SendableChooser<Command> m_chooser = new SendableChooser<>();
+  private SendableChooser<Command> m_chooser;
 
   // NOTE: The I/O pin functionality of the 5 exposed I/O pins depends on the hardware "overlay"
   // that is specified when launching the wpilib-ws server on the Romi raspberry pi.
@@ -76,6 +79,13 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    m_drivetrain = new Drivetrain();
+    m_odometry = new RobotOdometry(m_drivetrain);
+    m_onboardIO = new OnBoardIO(ChannelMode.INPUT, ChannelMode.INPUT);
+    startingGyroAngle = m_drivetrain.getGyroAngleZ();
+    m_controller = new Joystick(0);    
+    m_chooser = new SendableChooser<>();
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -191,6 +201,8 @@ public class RobotContainer {
     m_chooser.setDefaultOption("Ramsete Trajectory", generateRamseteCommand());
     m_chooser.addOption("Auto Routine Distance", new AutonomousDistance(m_drivetrain));
     m_chooser.addOption("Auto Routine Time", new AutonomousTime(m_drivetrain));
+    m_chooser.addOption("AutoNav Barrel", new RunAutoNavBarrelRacing(m_odometry, m_drivetrain));
+    m_chooser.addOption("AutoNav Slalom", new RunAutoNavSlalom(m_odometry, m_drivetrain));
     SmartDashboard.putData(m_chooser);
   }
 

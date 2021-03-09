@@ -26,7 +26,7 @@ public final class Constants {
         public static final double kvVoltSecondsPerMeter = 6.33;
         public static final double kaVoltSecondsSquaredPerMeter = 0.0389;
     
-        public static final double kPDriveVel = 0.085;
+        public static final double kPDriveVel = 0.26; //0.16; //0.085;
     
         public static final double kTrackwidthMeters = 0.142072613;
         public static final DifferentialDriveKinematics kDriveKinematics =
@@ -34,7 +34,7 @@ public final class Constants {
             
         //modify following 6 constants
         public static final int kEncoderCPR = 2048;
-        public static final double encoderTicksPerRev = 2048; // added by Team 3654
+        public static final double encoderTicksPerRev = 2048; // added by Team 3654 michele was here
         public static final double kWheelDiameterMeters = 0.1524;
         public static final double kWheelCircumferenceMeter = 0.4785; // pi x 6.0 x 2.54 /100 added by Team 3654
     

@@ -71,6 +71,10 @@ public class Drivetrain extends SubsystemBase {
     m_diffDrive.feed();
   }
 
+  public void stop(){
+    tankDriveVolts(0, 0);
+  }
+
   public void resetEncoders() {
     m_leftEncoder.reset();
     m_rightEncoder.reset();
@@ -123,6 +127,8 @@ public class Drivetrain extends SubsystemBase {
   public double getAverageDistanceMeter() {
     return (getLeftDistanceMeter() + getRightDistanceMeter()) / 2.0;
   }
+
+
 
   /**
    * The acceleration in the X-axis.
