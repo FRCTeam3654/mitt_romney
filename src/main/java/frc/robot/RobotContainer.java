@@ -44,6 +44,7 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import frc.robot.commands.RunAutoNavBarrelRacing;
+import frc.robot.commands.RunAutoNavBounce;
 import frc.robot.commands.RunAutoNavSlalom;
 
 /**
@@ -198,7 +199,8 @@ public class RobotContainer {
         .whenInactive(new PrintCommand("Button A Released"));
 
     // Setup SmartDashboard options
-    m_chooser.setDefaultOption("Ramsete Trajectory", generateRamseteCommand());
+    m_chooser.setDefaultOption("AutoNav Bounce", new RunAutoNavBounce(m_odometry, m_drivetrain));
+    m_chooser.addOption("Ramsete Trajectory", generateRamseteCommand());
     m_chooser.addOption("Auto Routine Distance", new AutonomousDistance(m_drivetrain));
     m_chooser.addOption("Auto Routine Time", new AutonomousTime(m_drivetrain));
     m_chooser.addOption("AutoNav Barrel", new RunAutoNavBarrelRacing(m_odometry, m_drivetrain));
