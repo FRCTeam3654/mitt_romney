@@ -57,8 +57,8 @@ public class RunAutoNavBounce extends SequentialCommandGroup {
     //mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(7.5), Units.inchesToMeters(22.5), new Rotation2d()), 0,
                //List.of(new Translation2d(Units.inchesToMeters(35), Units.inchesToMeters(45))), new Pose2d(Units.inchesToMeters(45), Units.inchesToMeters(75), Rotation2d.fromDegrees(90)), 0, false, false);
                
-    mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(7.5), Units.inchesToMeters(22.5), new Rotation2d()), 0,
-               List.of(), new Pose2d(Units.inchesToMeters(76), Units.inchesToMeters(22.5), Rotation2d.fromDegrees(0)), 0, false, false);
+    mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(22.5), new Rotation2d()), 0,
+               List.of(), new Pose2d(Units.inchesToMeters(112), Units.inchesToMeters(22.5), Rotation2d.fromDegrees(0)), 0, false, false);
                
 
     // note: final -90 , could be Pigeon's 270
@@ -85,7 +85,7 @@ public class RunAutoNavBounce extends SequentialCommandGroup {
         addCommands(
             new ParallelDeadlineGroup(
                 new SequentialCommandGroup(
-                    new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(7.5), Units.inchesToMeters(22.5), new Rotation2d()))), 
+                    new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(22.5), new Rotation2d()))), 
                     mp1 
                 )
                 , 
